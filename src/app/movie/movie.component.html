@@ -1,0 +1,22 @@
+<div class="container cListMovie" >
+    <h3>Lista de Peliculas</h3>
+    @for (movie of pageableMovie.content; track movie.idMovie) {
+        <div class="card cCard">
+            <div class="cYear">{{movie.year}}</div>
+            
+            <img class="card-img cCover" src="{{movie.cover}}" alt="Card image cap">
+            
+            <div class="card cCardBody">
+              <h3 class="card-title">{{movie.title}}</h3>
+              <p class="card-text">{{movie.gender.name}}</p>
+              <p class="card-text">{{movie.country}}</p>
+              
+                <h5>
+                    <a href="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
+                </h5>
+              
+            </div>
+          </div>
+    } 
+</div>
+

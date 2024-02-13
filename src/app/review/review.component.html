@@ -1,0 +1,13 @@
+<div class="container">
+    <h3>Criticicas de la pelicula: </h3>
+     @for (review of movieReviews; track $index) {
+        <div>
+            <p>{{review.idUser}}</p>
+            <p>{{review.name}}</p>
+            <p>{{review.title}}</p>
+            <p>{{review.review}}</p>
+        </div>
+     }
+</div>
+
+
