@@ -64,16 +64,16 @@
     }
     
     @if (pageableMovie.pageable.pageNumber>=1) {
-        <a (click)="goTo(pageableMovie.pageable.pageNumber)" href="javascript:void(0)">Previous</a>&nbsp;
+        <a (click)="goTo(pageableMovie.pageable.pageNumber)" href="javascript:void(0)">⋘</a>&nbsp;
     }@else {
-        <span>Previous</span>&nbsp;
+        <span>⋘</span>&nbsp;
     }
     @if (pageableMovie.totalPages>pageableMovie.pageable.pageNumber+1) {
     
-        <a (click)="goTo(pageableMovie.pageable.pageNumber+2)" href="javascript:void(0)">Next</a>&nbsp;
+        <a (click)="goTo(pageableMovie.pageable.pageNumber+2)" href="javascript:void(0)">⋙</a>&nbsp;
     }@else {
     
-        <span >Next</span>&nbsp;
+        <span >⋙</span>&nbsp;
     }
     
     @if (pageableMovie.pageable.pageNumber<pageableMovie.totalPages-1) {

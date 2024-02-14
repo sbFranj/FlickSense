@@ -1,16 +1,26 @@
 <div class="container">
     <div>
+        @if (idm) {
 
+        
         <h3>Criticicas de la pelicula: {{movieReview.movieDTO.title}}({{movieReview.movieDTO.year}}) </h3>
         <h5>                    
             <a href="" class="cButtonAdd">Añadir critica</a>
         </h5>
+        @if (!movieReview.reviewsDTO) {
+            <h1>No existen criticas para esta pelicula todavia</h1>
+        }
         @for (review of movieReview.reviewsDTO; track $index) {
             <div class="card cCard ">
                 <div class="cNameReview">
-                    {{review.name}}
+                    Usuario:<br>
+                    <a href="/users/{{review.idUser}}/review">{{review.name}}</a><br><br>
+                    Titulo:<br>
+                    {{review.title}}
                 </div>
+               
                 <div class="cReview">
+                   
                     {{review.review}}
                 </div>
                 <h5>
@@ -19,6 +29,35 @@
                     <a href="" class="cButtonDell">Borrar</a>
                 </h5>
             </div>
+        }
+        }@else {
+            <h3>Criticicas del usuario {{userReview.userDTO.name}} </h3>
+        <h5>                    
+            <a href="" class="cButtonAdd">Añadir critica</a>
+        </h5>
+        @if (!userReview.reviewsDTO) {
+            <h1>Este usuario no tiene criticas</h1>
+        }
+        @for (review of userReview.reviewsDTO; track $index) {
+            <div class="card cCard ">
+                <div class="cNameReview">
+                    Pelicula:<br>
+                    <a href="/movies/{{review.idMovie}}">{{review.titleMovie}}</a><br><br>
+                    Titulo:<br>
+                    {{review.title}}
+                </div>
+               
+                <div class="cReview">
+                   
+                    {{review.review}}
+                </div>
+                <h5>
+                    <a href="" class="cButtonEdit">Editar</a>
+                    
+                    <a href="" class="cButtonDell">Borrar</a>
+                </h5>
+            </div>
+        }
         }
         <div><br><br></div>
     </div>
