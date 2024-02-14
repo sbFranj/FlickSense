@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MovieReview } from '../interfaces/moviewReviews';
+import { MovieReview } from '../interfaces/moviewReview';
 import { MovieService } from '../services/movie.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { MovieService } from '../services/movie.service';
 })
 export class ReviewComponent implements OnInit {
 
-  movieReviews:MovieReview[] = []
+  movieReview!:MovieReview
 
   @Input() id:string = ""
 
@@ -19,7 +19,7 @@ export class ReviewComponent implements OnInit {
  ngOnInit(): void {
   this.movieService.getMovieReview(this.id)
   .subscribe({
-    next:(movieReviews => this.movieReviews = movieReviews)
+    next:(movieReview => this.movieReview = movieReview)
   })
 }
 
