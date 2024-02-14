@@ -1,0 +1,13 @@
+<div class="container">
+    <h3>Editar usuario </h3>
+    <div  clas="cInfoUser">
+        @if (id) {
+                <input class="form-control cInputUser" [ngModel]="user.email" type="text" name="email"><br>
+                <input class="form-control cInputUser" [ngModel]="user.name" type="text" name="name"><br>
+                <input class="form-control cInputUser" [ngModel]="password" type="text" name="password"><br>
+                <button class="cEditButton btn ">Editar</button>
+        }@else {
+            <h1>Usuario no encontrado</h1>
+        }
+    </div>
+</div>

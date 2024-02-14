@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PageableMovie } from '../interfaces/pageableMovie';
 import { MovieService } from '../services/movie.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './movie.component.html'
 })
 export class MovieComponent implements OnInit{

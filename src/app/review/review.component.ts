@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MovieReview } from '../interfaces/moviewReview';
+import { MovieReview, ReviewsDTO } from '../interfaces/moviewReview';
 import { MovieService } from '../services/movie.service';
+import { UserService } from '../services/user.service';
+import { UserReview } from '../interfaces/userReviews';
+
+
 
 @Component({
   selector: 'app-review',
@@ -12,15 +16,35 @@ export class ReviewComponent implements OnInit {
 
   movieReview!:MovieReview
 
-  @Input() id:string = ""
+  userReview!:UserReview
 
- constructor(private movieService:MovieService){}
+  @Input() idm:string = ""
+
+  @Input() idu:string = "";
+
+ constructor(private movieService:MovieService,
+            private userService:UserService){}
 
  ngOnInit(): void {
-  this.movieService.getMovieReview(this.id)
-  .subscribe({
-    next:(movieReview => this.movieReview = movieReview)
-  })
+  if(this.idm){
+    this.movieService.getMovieReview(this.idm)
+    .subscribe({
+      next:(movieReview => {
+        this.movieReview = movieReview
+        
+      })
+    })
+  }else {
+    this.userService.getMovieReview(this.idu)
+    .subscribe({
+      next:(userReview =>{
+        console.log(userReview)
+        this.userReview = userReview
+        
+      })
+    })
+  }
 }
+
 
 }
