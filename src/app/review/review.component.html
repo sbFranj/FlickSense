@@ -1,13 +1,27 @@
 <div class="container">
-    <h3>Criticicas de la pelicula: </h3>
-     @for (review of movieReviews; track $index) {
-        <div>
-            <p>{{review.idUser}}</p>
-            <p>{{review.name}}</p>
-            <p>{{review.title}}</p>
-            <p>{{review.review}}</p>
-        </div>
-     }
+    <div>
+
+        <h3>Criticicas de la pelicula: {{movieReview.movieDTO.title}}({{movieReview.movieDTO.year}}) </h3>
+        <h5>                    
+            <a href="" class="cButtonAdd">Añadir critica</a>
+        </h5>
+        @for (review of movieReview.reviewsDTO; track $index) {
+            <div class="card cCard ">
+                <div class="cNameReview">
+                    {{review.name}}
+                </div>
+                <div class="cReview">
+                    {{review.review}}
+                </div>
+                <h5>
+                    <a href="" class="cButtonEdit">Editar</a>
+                    
+                    <a href="" class="cButtonDell">Borrar</a>
+                </h5>
+            </div>
+        }
+        <div><br><br></div>
+    </div>
 </div>
 
 
