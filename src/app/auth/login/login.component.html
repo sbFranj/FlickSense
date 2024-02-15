@@ -5,10 +5,22 @@
 <div class="cLoginBody">
     <div class="cLogin">
         <img class="cUserIcon" src="../../../assets/img/user.png">
-        <input type="text" class="form-control cInputLogin" placeholder="Correo electronico" [(ngModel)]="user.username"><br>
-        <input type="password" class="form-control cInputLogin" [(ngModel)]="user.password" placeholder="Contraseña">
-        
-        <button class="cLoginButton btn" (click)="login()"><a>Iniciar sesion</a></button>	
+        <form [formGroup]="myForm" (submit)="login()">
+
+            <input 
+                type="text" 
+                class="form-control cInputLogin" 
+                placeholder="Correo electronico" 
+                formControlName="username"><br>
+
+            <input 
+                type="password" 
+                class="form-control cInputLogin"  
+                placeholder="Contraseña"
+                formControlName="password">
+            
+            <button class="cLoginButton btn" ><a>Iniciar sesion</a></button>	
+        </form>
         
     </div>
     <div class="cSendRegister">
@@ -31,7 +43,7 @@
 		<li>
         Una red social de cine con tus amigos
         </li>
-        <button class="cLoginButton btn" (click)="goTo('/register')">Registrarse</button>		 
+        <button class="cLoginButton btn" (click)="goTo('/auth/register')">Registrarse</button>		 
     </div>
 
 </div>
