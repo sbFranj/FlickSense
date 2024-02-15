@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { PageableMovie } from '../interfaces/pageableMovie';
+import { Component, Input, OnInit } from '@angular/core';
+import { PageableMovie , Content} from '../interfaces/pageableMovie';
 import { MovieService } from '../services/movie.service';
-import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './movie.component.html'
 })
 export class MovieComponent implements OnInit{
@@ -16,21 +16,32 @@ export class MovieComponent implements OnInit{
   sortField:string = "year";
   order:boolean = true;
 
+  @Input() id:string = ""
+
+  movie!: Content
 
   constructor(private movieService: MovieService){}
 
   ngOnInit(): void {
-    this.movieService.getAll("")
-    .subscribe({
-      next:(pagableMovie => {
-        this.pageableMovie = pagableMovie
-        for(let i = 1 ; i<= this.pageableMovie.totalPages; i++){
-          let url = i
-          this.urls.push(url)
-        }
+    if(this.id){
+      this.movieService.getMovie(this.id)
+      .subscribe({
+        next:(movie=>this.movie = movie)
       })
-    })
+    }else{
+      this.movieService.getAll("")
+      .subscribe({
+        next:(pagableMovie => {
+          this.pageableMovie = pagableMovie
+          for(let i = 1 ; i<= this.pageableMovie.totalPages; i++){
+            let url = i
+            this.urls.push(url)
+          }
+        })
+      })
+    }
   }
+
   goTo(page:number, sortField:string = this.sortField){
     const url: string = `?pageNumber=${page}&sortField=${sortField}&order=${this.order}`
     this.movieService.getAll(url)

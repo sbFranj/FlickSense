@@ -7,7 +7,7 @@
         <h5>                    
             <a href="" class="cButtonAdd">Añadir critica</a>
         </h5>
-        @if (!movieReview.reviewsDTO) {
+        @if (!movieReview.reviewsDTO.length) {
             <h1>No existen criticas para esta pelicula todavia</h1>
         }
         @for (review of movieReview.reviewsDTO; track $index) {
@@ -35,7 +35,7 @@
         <h5>                    
             <a href="" class="cButtonAdd">Añadir critica</a>
         </h5>
-        @if (!userReview.reviewsDTO) {
+        @if (!userReview.reviewsDTO.length) {
             <h1>Este usuario no tiene criticas</h1>
         }
         @for (review of userReview.reviewsDTO; track $index) {

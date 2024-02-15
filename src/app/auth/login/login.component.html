@@ -1,0 +1,39 @@
+<div class="container">
+
+
+<h3>Iniciar sesion</h3>
+<div class="cLoginBody">
+    <div class="cLogin">
+        <img class="cUserIcon" src="../../../assets/img/user.png">
+        <input type="text" class="form-control cInputLogin" placeholder="Correo electronico" [(ngModel)]="user.username"><br>
+        <input type="password" class="form-control cInputLogin" [(ngModel)]="user.password" placeholder="Contraseña">
+        
+        <button class="cLoginButton btn" (click)="login()"><a>Iniciar sesion</a></button>	
+        
+    </div>
+    <div class="cSendRegister">
+        <p>
+            ¿Qué ventajas tiene registrarse?
+        </p>
+            
+        <li>
+            Recomendaciones personalizadas
+        </li>
+        <li>
+            Diario de tus películas y series vistas
+        </li>
+		<li>
+            Escribe críticas y guarda tus favoritas
+        </li>		 
+		<li>
+            Crea y comparte tus listas de películas
+        </li>	 
+		<li>
+        Una red social de cine con tus amigos
+        </li>
+        <button class="cLoginButton btn" (click)="goTo('/register')">Registrarse</button>		 
+    </div>
+
+</div>
+
+</div>

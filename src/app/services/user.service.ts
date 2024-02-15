@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { UserReview } from '../interfaces/userReviews';
+import { LoginUser } from '../interfaces/loginUser';
 
 
 @Injectable({
@@ -24,5 +25,9 @@ export class UserService {
 
   getMovieReview(id:string):Observable<UserReview>{
     return this.http.get<UserReview>(`${this.baseUrl}/${id}/review`)
+  }
+
+  login(user:LoginUser){
+    return this.http.post<LoginUser>(`http://localhost:9090/loginuser`,user)
   }
 }
