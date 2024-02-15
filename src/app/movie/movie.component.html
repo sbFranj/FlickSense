@@ -1,6 +1,25 @@
+@if (id) {
+    <div class="card cCardOne">
+        <div class="cYear">{{movie.year}}</div>
+        
+        <img class="card-img cCover" src="{{movie.cover}}" alt="Card image cap">
+        
+        <div class="card cCardBody">
+            <h3 class="card-title">{{movie.title}}</h3>
+            <p class="card-text">{{movie.gender.name}}</p>
+            <p class="card-text">{{movie.country}}</p>
+            
+            <h5>
+                    <a href="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
+                </h5>
+                
+            </div>
+          </div>
+}@else {
 <div class="container cListMovie" >
-    <h3>Lista de Peliculas</h3>
-    <p>ordenar:&nbsp;&nbsp;&nbsp; 
+
+        <h3>Lista de Peliculas</h3>
+        <p>ordenar:&nbsp;&nbsp;&nbsp; 
         @if(order && sortField=="year"){
             <span class="cField"><a (click)="setOrder('year', true)" href="javascript:void(0)" class="cOrder">año</a>︿</span>&nbsp;&nbsp; 
         }@else if (!order && sortField=="year") {
@@ -8,41 +27,41 @@
         }@else {
             <span class="cField"><a (click)="setOrder('year', true)" href="javascript:void(0)">año</a>&nbsp;&nbsp; </span>
         }
-
+        
         @if(order && sortField=="title"){
         <span class="cField"><a (click)="setOrder('title', true)" href="javascript:void(0)" class="cOrder">titulo</a>︿</span>&nbsp;&nbsp;  
         }@else if (!order && sortField=="title") {
         <span class="cField"><a (click)="setOrder('title', true)" href="javascript:void(0)" class="cOrder">titulo</a>﹀</span>&nbsp;&nbsp;  
-        }@else {
+    }@else {
         <span class="cField"><a (click)="setOrder('title', true)" href="javascript:void(0)">titulo</a></span>&nbsp;&nbsp; 
-        }
-        
-        @if(order && sortField=="gender"){
+    }
+    
+    @if(order && sortField=="gender"){
         <span class="cField"><a (click)="setOrder('gender', true)" href="javascript:void(0)" class="cOrder">genero</a>︿</span>
-         }@else if (!order && sortField=="gender") {
+    }@else if (!order && sortField=="gender") {
         <span class="cField"><a (click)="setOrder('gender', true)" href="javascript:void(0)" class="cOrder">genero</a>﹀</span>
-         }@else {
+    }@else {
         <span class="cField"><a (click)="setOrder('gender', true)" href="javascript:void(0)">genero</a> </span>
-         }
-    </p>
-    @for (movie of pageableMovie.content; track movie.idMovie) {
-        <div class="card cCard">
-            <div class="cYear">{{movie.year}}</div>
+    }
+</p>
+@for (movie of pageableMovie.content; track movie.idMovie) {
+    <div class="card cCard">
+        <div class="cYear">{{movie.year}}</div>
+        
+        <img class="card-img cCover" src="{{movie.cover}}" alt="Card image cap">
+        
+        <div class="card cCardBody">
+            <h3 class="card-title">{{movie.title}}</h3>
+            <p class="card-text">{{movie.gender.name}}</p>
+            <p class="card-text">{{movie.country}}</p>
             
-            <img class="card-img cCover" src="{{movie.cover}}" alt="Card image cap">
-            
-            <div class="card cCardBody">
-              <h3 class="card-title">{{movie.title}}</h3>
-              <p class="card-text">{{movie.gender.name}}</p>
-              <p class="card-text">{{movie.country}}</p>
-              
-                <h5>
+            <h5>
                     <a href="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
                 </h5>
-              
+                
             </div>
           </div>
-    } 
+        } 
     <div style="text-align: center" >
     Total Items: <a>{{pageableMovie.totalElements}} </a><br>
     
@@ -69,7 +88,7 @@
         <span>⋘</span>&nbsp;
     }
     @if (pageableMovie.totalPages>pageableMovie.pageable.pageNumber+1) {
-    
+        
         <a (click)="goTo(pageableMovie.pageable.pageNumber+2)" href="javascript:void(0)">⋙</a>&nbsp;
     }@else {
     
@@ -77,13 +96,14 @@
     }
     
     @if (pageableMovie.pageable.pageNumber<pageableMovie.totalPages-1) {
-    
+        
         <a (click)="goTo(pageableMovie.totalPages)" href="javascript:void(0)">Last</a>
     }@else {
         <span>Last</span>
-    
+        
     }
-    </div>
+</div>
 
 </div>    
+}
 

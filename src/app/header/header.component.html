@@ -5,9 +5,8 @@
                 <img src="../../assets/img/flicksense.png" class="cLogo">
             </a>
         </ul>
-        <ul >
-
-         <app-search></app-search>
+        <ul>
+         <app-search (sendSearch)="enviarBusqueda($event)"></app-search>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -16,6 +15,7 @@
             <li class="nav-item">
             <a class="nav-link cReg" href="#">/ Registrarse</a>
           </li>
+
         </ul>
       </div>
    

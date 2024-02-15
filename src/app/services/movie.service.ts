@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PageableMovie } from '../interfaces/pageableMovie';
+import { Content, PageableMovie } from '../interfaces/pageableMovie';
 import { MovieReview } from '../interfaces/moviewReview';
 
 @Injectable({
@@ -14,6 +14,10 @@ export class MovieService {
 
   getAll(page:string):Observable<PageableMovie>{
     return this.http.get<PageableMovie>(`${this.baseUrl}${page}`)
+  }
+
+  getMovie(id:string):Observable<Content>{
+    return this.http.get<Content>(`${this.baseUrl}/${id}`)
   }
 
   getMovieReview(id:string):Observable<MovieReview>{
