@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PageableMovie , Content} from '../interfaces/pageableMovie';
 import { MovieService } from '../services/movie.service';
 
@@ -9,7 +9,7 @@ import { MovieService } from '../services/movie.service';
   imports: [],
   templateUrl: './movie.component.html'
 })
-export class MovieComponent implements OnInit{
+export class MovieComponent implements OnInit ,OnChanges{
 
   pageableMovie!:PageableMovie
   urls:number[] = []
@@ -17,13 +17,22 @@ export class MovieComponent implements OnInit{
   order:boolean = true;
 
   @Input() id:string = ""
+  @Input() q: string = ""
 
   movie!: Content
+  movies:Content[]=[]
 
   constructor(private movieService: MovieService){}
 
   ngOnInit(): void {
-    if(this.id){
+    if(this.q){
+      console.log("Query:", this.q)
+      this.movieService.search(this.q)
+      .subscribe({
+        next:(movies=> this.movies = movies)
+      })
+    }
+    else if(this.id){
       this.movieService.getMovie(this.id)
       .subscribe({
         next:(movie=>this.movie = movie)
@@ -38,6 +47,15 @@ export class MovieComponent implements OnInit{
             this.urls.push(url)
           }
         })
+      })
+    }
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.q){
+      console.log("Query:", this.q)
+      this.movieService.search(this.q)
+      .subscribe({
+        next:(movies=> this.movies = movies)
       })
     }
   }

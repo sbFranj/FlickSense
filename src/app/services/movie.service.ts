@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Content, PageableMovie } from '../interfaces/pageableMovie';
-import { MovieReview } from '../interfaces/moviewReview';
+import { MovieDTO, MovieReview } from '../interfaces/moviewReview';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +22,9 @@ export class MovieService {
 
   getMovieReview(id:string):Observable<MovieReview>{
     return this.http.get<MovieReview>(`${this.baseUrl}/${id}/review`)
+  }
+
+  search(q:string):Observable<Content[]>{
+    return this.http.get<Content[]>(`${this.baseUrl}/search?q=${q}`)
   }
 }

@@ -1,26 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { LoginUser } from '../../interfaces/loginUser';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink , Router} from '@angular/router';
+import { delay } from 'rxjs';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
 
   constructor(private userService:UserService,
-              private fb: FormBuilder,
               private router: Router){}
 
-  myForm: FormGroup = this.fb.group({
-    username:["", [Validators.required, Validators.email]],
-    password:["", [Validators.required]]
-  })  
+  // myForm: FormGroup = this.fb.group({
+  //   username:["", [Validators.required, Validators.email]],
+  //   password:["", [Validators.required]]
+  // })  
+  @ViewChild("myForm") myForm!: NgForm
+
+  notValid(field: string): boolean{
+    return this.myForm?.controls[field]?.invalid && this.myForm?.controls[field]?.touched
+  }
 
   goTo(url:string){
     this.router.navigateByUrl(url)
@@ -28,20 +33,22 @@ export class LoginComponent {
 
   login(){
     if(this.myForm.valid){
-      const {email, password} = this.myForm.value
-      console.log(email, password)
+      const {username, password} = this.myForm.value
+      console.log(username, password)
       this.userService.login(this.myForm.value)
       .subscribe(
         resp=>{
           console.log(resp)
           if(resp===true){
-            this.router.navigateByUrl("/")
+            this.router.navigateByUrl("/movies")
           }else{
             //sweet alert
             alert("error en el login")
           }
         }
       )
+    }else{
+      
     }
 
 }

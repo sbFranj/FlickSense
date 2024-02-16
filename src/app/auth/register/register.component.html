@@ -3,10 +3,41 @@
     <h3>Registrate(es Gratis) </h3>
     <div  clas="cInfoUser">
         <br>
-        <input class="form-control cInputUser" [(ngModel)]="user.email" type="text" name="email" placeholder="Correo electronico"><br>
+        <!-- <input class="form-control cInputUser" [(ngModel)]="user.email" type="text" name="email" placeholder="Correo electronico"><br>
         <input class="form-control cInputUser" [(ngModel)]="user.name" type="text" name="name" placeholder="Nombre"><br>
         <input class="form-control cInputUser" [(ngModel)]="user.password" type="password" name="password" placeholder="Contraseña"><br>
-        <button class="cEditButton btn ">Registrarse</button>
+        <button class="cEditButton btn " (click)="submit()">Registrarse</button> -->
+        <form [formGroup]="myForm" (ngSubmit)="submit()">
+            <input type="text"
+                   class="form-control cInputUser"
+                   placeholder="Email"
+                   formControlName="email">
+                   @if (invalidField('email')) {
+                    <span class="form-text text-danger cInputUser">
+                        {{emailErrorMsg}}
+                    </span>
+                   }<br>
+            <input type="text"
+                class="form-control cInputUser"
+                placeholder="nombre"
+                formControlName="name">
+                @if (invalidField('name')) {
+                 <span class="form-text text-danger cInputUser">
+                     El nombre es obligatorio
+                 </span>
+             }<br>
+             <input type="password"
+                class="form-control cInputUser"
+                placeholder="contraseña"
+                formControlName="password">
+                @if (invalidField('password')) {
+                 <span class="form-text text-danger cInputUser">
+                     La contraseña es obligatoria
+                 </span>
+          }   <br> 
+
+          <button [disabled]="myForm.invalid" class="cEditButton btn">Registrarse</button>
+        </form>
     </div>
     <br>
 </div>
