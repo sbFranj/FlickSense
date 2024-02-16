@@ -8,10 +8,10 @@
         <ul>
          <app-search (sendSearch)="enviarBusqueda($event)"></app-search>
         </ul>
-        @if (name()) {
-          <h3>{{name()}}</h3>
+        @if (name) {
+          <h3>{{name.substring(0, name.indexOf("@"))}}</h3>
+          
         }@else {
-
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link cLog" href="/auth/login">Iniciar Sesión</a>

@@ -14,31 +14,40 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
-  user!:RegisterUser
+  
   constructor(private fb:FormBuilder,
               private validatorEmail: ValidateEmailService,
               private userService:UserService,
               private router:Router){}
 
+  //formulario reactivo con los campos necesarios para registrarse
   myForm: FormGroup = this.fb.group({
     name:["",[Validators.required]],
     email:["",[Validators.required, Validators.email], [this.validatorEmail]],
     password:["",[Validators.required]]
   })
 
+  //si el campo es invalido nos muestra los errores
   invalidField(field: string){
     return this.myForm.get(field)?.invalid 
             && this.myForm.get(field)?.touched;
   }
 
+  //con este metodo filtramos que erro mostrar
   get emailErrorMsg():string{
+    //recogemos los errores del campo email
     const errors = this.myForm.get("email")?.errors
+    //creamos un mensaje vacio
     let errorMsg :string = "";
+    //si tiene errores da true
     if(errors){
+      //si tiene errores de require da true
       if(errors["required"]){
         errorMsg = "El email es obligatorio"
+      //si tiene errores del formato email da true
       }else if(errors["email"]){
         errorMsg = "El email no tiene formato de email"
+      //si el email ya existe da true
       }else if(errors["emailTaken"]){
         errorMsg = "El email ya está en uso"
       }
@@ -47,22 +56,26 @@ export class RegisterComponent {
     return errorMsg
   }
 
-
-
+  //metodo para enviar registro a la api
   submit(){
     this.myForm.markAsUntouched()
+    //si el formulario es valido da true
     if(!this.myForm.invalid){
+      //recogemos email, password y name del formulario
       const {email, password, name} = this.myForm.value
-      const user = {
+      //creamos un usuario de registro con las propiedades que nos hacen falta
+      const user: RegisterUser = {
         email:email,
         password:password,
         name:name,
         active:1,
         role:"user"
       }
+      //usamos nuestro servicio para enviar nuestro objeto a la api
       this.userService.register(user)
       .subscribe({
         next:(user=>{
+          //cuando haga registro lo enviamos al login
           this.router.navigateByUrl("/auth/login")
         })
       })

@@ -3,7 +3,7 @@ import { Injectable, signal } from '@angular/core';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { User } from '../interfaces/user';
 import { UserReview } from '../interfaces/userReviews';
-import { LoginUser } from '../interfaces/loginUser';
+
 import { jwtDecode } from 'jwt-decode';
 
 
@@ -20,8 +20,8 @@ export class UserService {
   role = signal("")
 
   update(){
-    this.email.update(resp => jwtDecode(localStorage.getItem("token")|| "").sub || "")
-    this.role.update(resp => ((jwtDecode(localStorage.getItem("token")|| "").sub || "") as any).role)
+    this.email.update(resp => jwtDecode(localStorage.getItem("token")|| "").sub || "")                  
+    this.role.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).role))
   }
 
   getAll():Observable<User[]>{

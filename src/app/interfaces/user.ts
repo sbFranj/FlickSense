@@ -1,3 +1,4 @@
+//interface necsaria para mostrar datos del usuario
 export interface User {
     idUser: number;
     name:   string;

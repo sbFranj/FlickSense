@@ -1,20 +1,25 @@
 @if (id) {
+    @if (movie){
     <div class="card cCardOne">
         <div class="cYear">{{movie.year}}</div>
-        
-        <img class="card-img cCover" src="{{movie.cover}}" alt="Card image cap">
-        
-        <div class="card cCardBody">
-            <h3 class="card-title">{{movie.title}}</h3>
-            <p class="card-text">{{movie.gender.name}}</p>
-            <p class="card-text">{{movie.country}}</p>
+
             
-            <h5>
+            <img class="card-img cCover" src="{{movie.cover}}" alt="Card image cap">
+            
+            <div class="card cCardBody">
+                <h3 class="card-title">{{movie.title}}</h3>
+                <p class="card-text">{{movie.gender.name}}</p>
+                <p class="card-text">{{movie.country}}</p>
+                
+                <h5>
                     <a href="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
                 </h5>
-                
             </div>
-          </div>
+        </div>
+        }@else {
+            <h3>Pelicula no encontrada</h3>
+        }
+            
 }@else if (q) {
     <div class="container cListMovie">
 

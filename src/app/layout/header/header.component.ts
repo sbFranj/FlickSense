@@ -13,21 +13,19 @@ import { UserService } from '../../services/user.service';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit{
-
+  //nombre del usuario logeado
   name:any = ""
-
   constructor(private router:Router,
             private userService:UserService){}
 
+  //cuando carga el componente 
   ngOnInit(): void {
-    this.name =  this.userService.email
-    
+    //rescata del localstorage el nombre de usuario
+    this.userService.update()
+    //el nombre es igual a la señal que nos devuelve el nombre de usuario del token
+    this.name =  this.userService.email()    
   }
-  
-  show(){
-    console.log((jwtDecode(localStorage.getItem("token")||"")as any ).role)
-  }
-  
+  //funcion destinada a enviar al componente movie una query de busqueda desde el evento del
  enviarBusqueda(event:string){
      console.log("padre", event)
     this.router.navigateByUrl(`/movies/search/${event}`)
