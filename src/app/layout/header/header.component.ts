@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { SearchComponent } from '../../search/search.component';
+import { jwtDecode } from "jwt-decode";
+import { Router } from '@angular/router';
+import { MovieService } from '../../services/movie.service';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -8,6 +12,23 @@ import { SearchComponent } from '../../search/search.component';
   imports: [SearchComponent],
   templateUrl: './header.component.html'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
+  //nombre del usuario logeado
+  name:any = ""
+  constructor(private router:Router,
+            private userService:UserService){}
+
+  //cuando carga el componente 
+  ngOnInit(): void {
+    //rescata del localstorage el nombre de usuario
+    this.userService.update()
+    //el nombre es igual a la señal que nos devuelve el nombre de usuario del token
+    this.name =  this.userService.email()    
+  }
+  //funcion destinada a enviar al componente movie una query de busqueda desde el evento del
+ enviarBusqueda(event:string){
+     console.log("padre", event)
+    this.router.navigateByUrl(`/movies/search/${event}`)
+ }
 
 }

@@ -1,4 +1,4 @@
-
+//interface necesaria para las criticas adjuntas a una pelicula
 export interface MovieReview {
     movieDTO:   MovieDTO;
     reviewsDTO: ReviewsDTO[];

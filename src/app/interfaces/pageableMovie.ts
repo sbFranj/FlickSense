@@ -1,3 +1,4 @@
+//interface necesaria para el pageable de la seccion de peliculas
 export interface PageableMovie {
     content:          Content[];
     pageable:         Pageable;

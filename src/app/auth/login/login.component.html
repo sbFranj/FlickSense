@@ -5,21 +5,40 @@
 <div class="cLoginBody">
     <div class="cLogin">
         <img class="cUserIcon" src="../../../assets/img/user.png">
-        <form [formGroup]="myForm" (submit)="login()">
+        <form #myForm="ngForm" (ngSubmit)="login()">
 
             <input 
                 type="text" 
                 class="form-control cInputLogin" 
                 placeholder="Correo electronico" 
-                formControlName="username"><br>
+                name="username"
+                ngModel
+                #username
+                required
+                >
+                @if (notValid('username')) {
 
+                    <span class="text-danger">
+                        email requerido
+                    </span>
+                }
             <input 
                 type="password" 
                 class="form-control cInputLogin"  
                 placeholder="Contraseña"
-                formControlName="password">
+                name="password"
+                ngModel
+                #password
+                required
+                >
+                @if (notValid('password')) {
+
+                    <span class=" text-danger">
+                        contraseña requerida
+                    </span>
+                }
             
-            <button class="cLoginButton btn" ><a>Iniciar sesion</a></button>	
+            <button class="cLoginButton btn" [disabled]="myForm.invalid"><a>Iniciar sesion</a></button>	
         </form>
         
     </div>
