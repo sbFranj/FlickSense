@@ -5,7 +5,7 @@
         
         <h3>Criticicas de la pelicula: {{movieReview.movieDTO.title}}({{movieReview.movieDTO.year}}) </h3>
         <h5>                    
-            <a href="" class="cButtonAdd">Añadir critica</a>
+            <a href="/addReview/{{movieReview.movieDTO.idMovie}}" class="cButtonAdd">Añadir critica</a>
         </h5>
         @if (!movieReview.reviewsDTO.length) {
             <h1>No existen criticas para esta pelicula todavia</h1>
@@ -32,9 +32,7 @@
         }
         }@else {
             <h3>Criticicas del usuario {{userReview.userDTO.name}} </h3>
-        <h5>                    
-            <a href="" class="cButtonAdd">Añadir critica</a>
-        </h5>
+        
         @if (!userReview.reviewsDTO.length) {
             <h1>Este usuario no tiene criticas</h1>
         }

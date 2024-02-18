@@ -49,7 +49,7 @@
         <p>No se encuentra ningun registro</p>
     }
 </div>
-}@else {
+}@else if (pageableMovie.content){
 <div class="container cListMovie" >
 
         <h3>Lista de Peliculas</h3>
@@ -137,7 +137,10 @@
         
     }
 </div>
-
 </div>    
+}
+@else {
+
+    <h3>Error al cargar la BBDD</h3>
 }
 
