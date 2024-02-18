@@ -18,10 +18,12 @@ export class UserService {
 
   email = signal("")
   role = signal("")
+  id = signal("")
 
   update(){
     this.email.update(resp => jwtDecode(localStorage.getItem("token")|| "").sub || "")                  
     this.role.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).role))
+    this.id.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).id))
   }
 
   getAll():Observable<User[]>{

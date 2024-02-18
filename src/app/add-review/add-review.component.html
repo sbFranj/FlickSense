@@ -1,0 +1,36 @@
+<div class="container cDivReview">
+    <h3>Añadir critica a: {{movie.title}}</h3>
+
+        <form class="form-control cFormReview" [formGroup]="myForm" >
+            <input
+            type="text"
+            class="form-control cTitleReview"
+            placeholder="Titulo de la critica"
+            formControlName="title">
+            @if (invalidField('title')) {
+                <span class="form-text text-danger">
+                    titulo requerido
+                </span>
+            }<br>
+            <input
+            type="t"
+            class="form-control cAreaReview"
+            placeholder="Escribe una critica"
+            formControlName="review">
+           
+            @if (invalidField('review')) {
+                <span class="form-text text-danger">
+                    Debes escribir una critica antes de enviar
+                </span>
+            }
+            <br>
+            <h5>
+            @if (myForm.valid) {
+                <a (click)="submit()" href="javascript:void(0)" class="cSend">Enviar</a>
+            }@else{
+                <a href="javascript:void(0)" class="cSend">Enviar</a>
+            }
+            </h5>
+        </form>
+    
+</div>

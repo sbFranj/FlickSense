@@ -5,6 +5,7 @@ import { UserComponent } from './user/userList/user.component';
 import { InfoUserComponent } from './user/info-user/info-user.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AddReviewComponent } from './add-review/add-review.component';
 
 export const routes: Routes = [
 
@@ -16,5 +17,6 @@ export const routes: Routes = [
     {path:"users/:id", component:InfoUserComponent},
     {path:"users/:idu/review", component:ReviewComponent},
     {path:"auth/login", component: LoginComponent},
-    {path:"auth/register", component: RegisterComponent}
+    {path:"auth/register", component: RegisterComponent},
+    {path:"addReview/:idMovie", component: AddReviewComponent}
 ];

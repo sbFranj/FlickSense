@@ -248,3 +248,35 @@ margin-right: 1rem;
     margin-top: 5rem;
     width: 100%;
 }
+
+.cSend{
+    float: right;
+    
+}
+
+.cTitleReview{
+    background-color: #D9D9D9;
+}
+
+.cFormReview{
+   padding-top: 1%;
+   margin-top: 5%;
+   padding-bottom: 5%;
+}
+
+.cDivReview{
+    padding-bottom: 5%;
+}
+
+.cAreaReview{
+    background-color: #D9D9D9;
+    height: 10rem;
+    
+}
+
+.cAreaReview::placeholder{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding:1%;  
+}
