@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { FormsModule, NgForm,} from '@angular/forms';
 import { RouterLink , Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -41,8 +42,14 @@ export class LoginComponent {
           if(resp===true){
             this.router.navigateByUrl("/")
           }else{
-            //sweet alert
-            alert("error en el login")
+            Swal.fire({
+              title: 'Error!',
+              text: "email y/o contraseña erroneos",
+              icon: 'error',
+              iconColor:"#fec701",
+              confirmButtonText: 'Intentarlo de nuevo',
+              confirmButtonColor:"#3C6E99",
+            })
           }
         }
       )

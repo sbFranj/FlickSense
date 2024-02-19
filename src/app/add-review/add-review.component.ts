@@ -6,6 +6,7 @@ import { Review } from '../interfaces/review';
 import { UserService } from '../services/user.service';
 import { ReviewService } from '../services/review.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-review',
@@ -19,7 +20,17 @@ export class AddReviewComponent implements OnInit{
   @Input() idUser:string =""
   @Input() title:string = ""
 
-  movie!:Content
+  movie:Content={
+    idMovie:-1,
+    year:-1,
+    cover:"",
+    title:"",
+    gender:{
+      idGender:-1,
+      name:""
+    },
+    country:""
+  }
   titles:string ="";
 
   myForm:FormGroup = this.fb.group({
@@ -80,7 +91,14 @@ export class AddReviewComponent implements OnInit{
                 })
               })
           }else{  
-            alert("se ha producido un error al editar")
+            Swal.fire({
+              title: 'Error!',
+              text: "No puedes editar una critica de otro usuario",
+              icon: 'error',
+              iconColor:"#fec701",
+              confirmButtonText: 'Confirmar',
+              confirmButtonColor:"#3C6E99",
+            })
           }
 
       }else{

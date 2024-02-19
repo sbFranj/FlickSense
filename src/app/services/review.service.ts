@@ -24,4 +24,8 @@ export class ReviewService {
   putReview(review:Review):Observable<any>{
     return this.http.put(`${this.baseUrl}/edit`, review)
   }
+
+  delReview(idMovie:string, idUser:string, title:string):Observable<string>{
+    return this.http.delete<string>(`${this.baseUrl}/del/${idMovie}/${idUser}/${title}`)
+  }
 }

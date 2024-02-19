@@ -2,7 +2,6 @@ import { Component, OnChanges, OnInit, SimpleChanges, signal } from '@angular/co
 import { SearchComponent } from '../../search/search.component';
 import { jwtDecode } from "jwt-decode";
 import { Router } from '@angular/router';
-import { MovieService } from '../../services/movie.service';
 import { UserService } from '../../services/user.service';
 
 
@@ -14,7 +13,7 @@ import { UserService } from '../../services/user.service';
 })
 export class HeaderComponent implements OnInit{
   //nombre del usuario logeado
-  name = this.userService.email
+  name = this.userService.name
   
   constructor(private router:Router,
             private userService:UserService){}
@@ -22,7 +21,8 @@ export class HeaderComponent implements OnInit{
   //cuando carga el componente 
   ngOnInit(): void {
     //actualiza del localstorage el nombre de usuario
-    this.userService.update()  
+    this.userService.update()
+    console.log(jwtDecode(localStorage.getItem("token") || "")  )
 
   }
   //funcion destinada a enviar al componente movie una query de busqueda desde el evento del

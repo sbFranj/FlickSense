@@ -19,6 +19,7 @@ export class UserService {
   email = signal("")
   role = signal("")
   id = signal("")
+  name = signal("")
 
   update(){
     if(typeof localStorage != "undefined"){
@@ -26,6 +27,7 @@ export class UserService {
       this.email.update(resp => jwtDecode(localStorage.getItem("token")|| "").sub || "")                  
       this.role.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).role))
       this.id.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).id))
+      this.name.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).name))
     }
   }
 
@@ -43,6 +45,10 @@ export class UserService {
 
   toLocalStorage(resp : any){
     localStorage.setItem("token", resp.token);
+  }
+
+  putUser(user:User, idUser:string):Observable<User>{
+    return this.http.put<User>(`${this.baseUrl}/edit/${idUser}`, user)
   }
 
   register(user:any):Observable<any>{
@@ -68,6 +74,7 @@ export class UserService {
     this.email = signal("")                 
     this.role = signal("") 
     this.id = signal("") 
+    this.name = signal("") 
     
   }
 }
