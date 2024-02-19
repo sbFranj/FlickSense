@@ -25,7 +25,17 @@ export class MovieComponent implements OnInit ,OnChanges{
   @Input() q: string = ""
 
   //pelicula
-  movie!: Content
+  movie:Content={
+    idMovie:-1,
+    year:-1,
+    cover:"",
+    title:"",
+    gender:{
+      idGender:-1,
+      name:""
+    },
+    country:""
+  }
   //aray de peliculas
   movies:Content[]=[]
 

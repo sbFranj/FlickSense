@@ -23,15 +23,14 @@
                    
                     {{review.review}}
                 </div>
-                <h5>
-                    <a href="" class="cButtonEdit">Editar</a>
-                    
-                    <a href="" class="cButtonDell">Borrar</a>
-                </h5>
+                
             </div>
         }
-        }@else {
+        }@else if(idu){
+            
+                
             <h3>Criticicas del usuario {{userReview.userDTO.name}} </h3>
+            
         
         @if (!userReview.reviewsDTO.length) {
             <h1>Este usuario no tiene criticas</h1>
@@ -50,9 +49,9 @@
                     {{review.review}}
                 </div>
                 <h5>
-                    <a href="" class="cButtonEdit">Editar</a>
+                    <a href="/reviews/edit/{{review.idMovie}}/{{userReview.userDTO.idUser}}/{{review.title}}" class="cButtonEdit">Editar</a>
                     
-                    <a href="" class="cButtonDell">Borrar</a>
+                    <a href="javascript:void(0)" (click)="delReview(review.idMovie.toString(), userReview.userDTO.idUser.toString(), review.title)"  class="cButtonDell">Borrar</a>
                 </h5>
             </div>
         }

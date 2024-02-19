@@ -8,8 +8,15 @@
         <ul>
          <app-search (sendSearch)="enviarBusqueda($event)"></app-search>
         </ul>
-        @if (logged) {
-          <h3>{{name.substring(0, name.indexOf("@"))}}</h3>
+        @if (name()) {
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class ="nav-link cReg">{{name()}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="logout()" href="javascript:void(0)">Cerrar Sesión</a>
+            </li>
+          </ul>
         }@else {
           <ul class="navbar-nav">
             <li class="nav-item">

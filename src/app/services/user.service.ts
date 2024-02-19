@@ -19,11 +19,16 @@ export class UserService {
   email = signal("")
   role = signal("")
   id = signal("")
+  name = signal("")
 
   update(){
-    this.email.update(resp => jwtDecode(localStorage.getItem("token")|| "").sub || "")                  
-    this.role.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).role))
-    this.id.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).id))
+    if(typeof localStorage != "undefined"){
+
+      this.email.update(resp => jwtDecode(localStorage.getItem("token")|| "").sub || "")                  
+      this.role.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).role))
+      this.id.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).id))
+      this.name.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).name))
+    }
   }
 
   getAll():Observable<User[]>{
@@ -42,6 +47,10 @@ export class UserService {
     localStorage.setItem("token", resp.token);
   }
 
+  putUser(user:User, idUser:string):Observable<User>{
+    return this.http.put<User>(`${this.baseUrl}/edit/${idUser}`, user)
+  }
+
   register(user:any):Observable<any>{
     return this.http.post("http://localhost:9090/registeruser", user)
   }
@@ -57,6 +66,15 @@ export class UserService {
        map(resp=>true),
        catchError(err => of(err.error.msg))
      )
+    
+  }
+
+  logout(){
+    localStorage.removeItem("token")
+    this.email = signal("")                 
+    this.role = signal("") 
+    this.id = signal("") 
+    this.name = signal("") 
     
   }
 }

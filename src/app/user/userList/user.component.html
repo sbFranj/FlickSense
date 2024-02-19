@@ -2,7 +2,7 @@
     <h1>Lista de usuarios</h1>
     <div class="cUlUser">
         @for (user of users; track user.idUser) {
-            <p class="cLi">{{user.name}}, {{user.email}}  <a class="cRight" href="/users/{{user.idUser}}">Editar</a> <a class="cRight" href="javascript:void(0)">Borrar</a></p>
+            <p class="cLi">{{user.name}}, {{user.email}}  <a class="cRight" href="/users/{{user.idUser}}">Editar</a></p>
         }
     </div>
 </div>
