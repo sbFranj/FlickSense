@@ -18,5 +18,6 @@ export const routes: Routes = [
     {path:"users/:idu/review", component:ReviewComponent},
     {path:"auth/login", component: LoginComponent},
     {path:"auth/register", component: RegisterComponent},
-    {path:"addReview/:idMovie", component: AddReviewComponent}
+    {path:"addReview/:idMovie", component: AddReviewComponent},
+    {path:"reviews/:idMovie/:idUser/:title", component: AddReviewComponent}
 ];

@@ -21,9 +21,12 @@ export class UserService {
   id = signal("")
 
   update(){
-    this.email.update(resp => jwtDecode(localStorage.getItem("token")|| "").sub || "")                  
-    this.role.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).role))
-    this.id.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).id))
+    if(typeof localStorage != "undefined"){
+
+      this.email.update(resp => jwtDecode(localStorage.getItem("token")|| "").sub || "")                  
+      this.role.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).role))
+      this.id.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).id))
+    }
   }
 
   getAll():Observable<User[]>{
@@ -57,6 +60,14 @@ export class UserService {
        map(resp=>true),
        catchError(err => of(err.error.msg))
      )
+    
+  }
+
+  logout(){
+    localStorage.removeItem("token")
+    this.email = signal("")                 
+    this.role = signal("") 
+    this.id = signal("") 
     
   }
 }
