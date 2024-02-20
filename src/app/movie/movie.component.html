@@ -15,6 +15,9 @@
                     <a href="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
                 </h5>
             </div>
+            <h5>
+                <a (click)="del(movie.idMovie.toString())" href="javascript:void(0)" class="cReviewButtonD">Borrar</a>
+            </h5>
         </div>
         }@else {
             <h3>Pelicula no encontrada</h3>
@@ -42,6 +45,9 @@
                     </h5>
                     
                 </div>
+                <h5>
+                    <a (click)="del(movie.idMovie.toString())" href="javascript:void(0)" class="cReviewButtonD">Borrar</a>
+                </h5>
             </div>
         } 
     }@else {
@@ -92,11 +98,17 @@
             <p class="card-text">{{movie.country}}</p>
             
             <h5>
-                    <a href="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
-                </h5>
-                
-            </div>
-          </div>
+                <a href="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
+            </h5>
+            
+        </div>
+        <h5>
+            <a (click)="del(movie.idMovie.toString())" href="javascript:void(0)" class="cReviewButtonD">Borrar</a>
+        </h5>
+        <h5>
+            <a href="javascript:void(0)" class="cReviewButtonE">Editar</a>
+        </h5>
+    </div>
         } 
     <div style="text-align: center" >
     Total Items: <a>{{pageableMovie.totalElements}} </a><br>

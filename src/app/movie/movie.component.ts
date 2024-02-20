@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PageableMovie , Content} from '../interfaces/pageableMovie';
 import { MovieService } from '../services/movie.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -66,7 +68,8 @@ export class MovieComponent implements OnInit ,OnChanges{
   //aray de peliculas
   movies:Content[]=[]
 
-  constructor(private movieService: MovieService){}
+  constructor(private movieService: MovieService,
+              private router:Router){}
 
   //cuando inicia el componente
   ngOnInit(): void {
@@ -139,6 +142,55 @@ export class MovieComponent implements OnInit ,OnChanges{
     this.sortField = sortField;
     //forzamos un go to como tiene por defecto el campo de ordenacion y el orden nos manda a la url correcta
     this.goTo(this.pageableMovie.pageable.pageNumber+1, sortField)
+  }
+
+  del(idMovie:string){
+    Swal.fire({
+      title: "Estas seguro de borrar esta Pelicula?",
+      showDenyButton: true,
+      confirmButtonText: "Si",
+      denyButtonText: `No`,
+      confirmButtonColor:"#3C6E99",
+      denyButtonColor:"#fec701"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.movieService.delMovie(idMovie)
+          .subscribe({
+            next:(resp=>{
+              Swal.fire({
+                title: 'Eliminada!',
+                text: "Pelicula eliminada",
+                icon: 'success',
+                iconColor:"#fec701",
+                confirmButtonText: 'Volver',
+                confirmButtonColor:"#3C6E99",
+              }).then((resp)=>{
+                this.router.navigateByUrl("/movies")
+                this.goTo(1)
+              })
+            }),
+            error:(err=>{
+              Swal.fire({
+                title: 'Error!',
+                text: err.error.msg,
+                icon: 'error',
+                iconColor:"#fec701",
+                confirmButtonText: 'Volver',
+                confirmButtonColor:"#3C6E99",
+              })
+            })
+          })
+      } else if (result.isDenied) {
+        Swal.fire({
+          title: 'Cancelado!',
+          icon: 'info',
+          iconColor:"#fec701",
+          confirmButtonText: 'Volver',
+          confirmButtonColor:"#3C6E99",
+        })
+      }
+    })
+
   }
 
 }
