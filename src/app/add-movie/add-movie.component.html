@@ -1,0 +1,73 @@
+<div class="container cContainerMovie">
+    <h3>Agregar pelicula</h3>
+    <div class="cFormMovie">
+        <form class="cFormMovieForm" [formGroup]="myForm">
+            Titulo 
+            <input class="form-control cAddInputMovie" 
+                   placeholder=""
+                   type="text"
+                   formControlName="title">
+                   @if (notValid('title')) {
+
+                    <span class=" text-danger">
+                       Titulo necesario
+                    </span>
+                }<br>
+            Año
+            <input class="form-control cAddInputMovie" 
+                   placeholder=""
+                   type="number"
+                   formControlName="year">
+                   @if (notValid('year')) {
+
+                    <span class=" text-danger">
+                       El Año no puede ser menor a 1895
+                    </span>
+                }<br>
+            Portada
+            <input class="form-control cAddInputMovie"
+                   placeholder=""
+                   type="file"
+                   formControlName="cover" (change)="getFile($event)"><br>
+            Genero
+            <select class="form-control cAddInputMovie"  
+                    name="idGender"
+                    type="number"
+                    formControlName="idGender">   
+                <option value="">Seleccione un genero</option>
+                @for (gender of genders; track gender.idGender) {
+                    <option value="{{gender.idGender}}">{{gender.name}}</option>
+                }
+            </select>
+            @if (notValid('idGender')) {
+
+                <span class=" text-danger">
+                  Seleccione un genero
+                </span>
+            }<br>
+            Pais
+            <input class="form-control cAddInputMovie" 
+                   placeholder=""
+                   type="text"
+                   formControlName="country">
+                   @if (notValid('country')) {
+
+                    <span class=" text-danger">
+                        Pais necesario
+                    </span>
+                }<br>
+            @if (myForm.valid) {
+
+                <h5>
+                    <a href="javascript:void(0)" (click)="submit()" class="cAddButtonMovie">Enviar</a>
+                </h5>
+            }@else {
+                <h5>
+                    <a class="cAddButtonMovie">Enviar</a>
+                </h5>
+            }       
+        </form>
+        <br>
+
+    </div>
+</div>

@@ -120,7 +120,9 @@
 }
 
 .cListMovie{
+    position: relative;
     padding-bottom: 10%;
+   padding-top: 0.1%;
 }
 
 .cReviewButton{
@@ -129,9 +131,30 @@
     left: 0;
     margin: 0;
     padding: 10px;
-    width: 100%;
     color: black;
     text-decoration: none;
+}
+.cReviewButtonE{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    margin-right: 10%;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    
+}
+.cReviewButtonD{
+    position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0;
+  margin-right: 1%;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  
 }
 
 
@@ -279,4 +302,44 @@ margin-right: 1rem;
     top: 0;
     left: 0;
     padding:1%;  
+}
+
+.cAddMovieButton{
+  float: right;
+  padding-top: 1.2%;
+  text-decoration: none;
+  color: #000;
+}
+
+.cContainerMovie{
+    padding: 1%;
+}
+.cFormMovie{
+    background-color: white;
+    position: relative;
+    padding: 2%;
+    margin: 4%;
+    margin-top: 4%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+    
+}
+.cAddButtonMovie{
+    float: right;
+    text-decoration: none;
+    color:black;
+    padding-right: 0.5rem;
+}
+
+.cAddInputMovie{
+    background-color: #D9D9D9; 
+}
+
+
+
+.cFormMovieForm{
+    padding-top: 2%;
+    width: 80%;
+    
 }

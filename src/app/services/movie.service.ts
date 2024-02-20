@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Content, PageableMovie } from '../interfaces/pageableMovie';
+import { Content, Gender, PageableMovie } from '../interfaces/pageableMovie';
 import { MovieDTO, MovieReview } from '../interfaces/moviewReview';
 
 @Injectable({
@@ -27,4 +27,26 @@ export class MovieService {
   search(q:string):Observable<Content[]>{
     return this.http.get<Content[]>(`${this.baseUrl}/search?q=${q}`)
   }
+
+  getGenders():Observable<Gender[]>{
+    return this.http.get<Gender[]>(`${this.baseUrl}/genders`)
+  }
+
+  postMovie(movie:Omit<Content, "idMovie">):Observable<Content>{
+    return this.http.post<Content>(`${this.baseUrl}/add`,movie)
+  }
+
+  delMovie(idMovie:string):Observable<any>{
+    return this.http.delete(`${this.baseUrl}/del/${idMovie}`)
+  }
+
+  addCloudinary(file: File) {
+    const url = `https://api.cloudinary.com/v1_1/dgrri2uuj/upload`;
+    const unsignedUploadPreset = 'flicksense';
+    const fd = new FormData();
+    fd.append('upload_preset', unsignedUploadPreset);
+    fd.append('file', file);
+    
+    return this.http.post<any>(url, fd);
+    }
 }
