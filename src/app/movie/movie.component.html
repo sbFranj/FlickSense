@@ -25,8 +25,8 @@
 
         @if (movies.length) {
             
+            <h3>Busqueda de: {{q}}</h3>
             @for (movie of movies; track movie.idMovie) {
-                <h3>Busqueda de: {{q}}</h3>
                 <div class="card cCard">
                     <div class="cYear">{{movie.year}}</div>
                     
@@ -51,8 +51,10 @@
 </div>
 }@else if (pageableMovie.content){
 <div class="container cListMovie" >
-
-        <h3>Lista de Peliculas</h3>
+    <h5>
+        <a href="/movies/add" class="cAddMovieButton">Agregar pelicula</a>
+    </h5>
+        <h3 >Lista de Peliculas</h3>
         <p>ordenar:&nbsp;&nbsp;&nbsp; 
         @if(order && sortField=="year"){
             <span class="cField"><a (click)="setOrder('year', true)" href="javascript:void(0)" class="cOrder">año</a>︿</span>&nbsp;&nbsp; 

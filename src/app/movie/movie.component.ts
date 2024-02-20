@@ -12,7 +12,34 @@ import { MovieService } from '../services/movie.service';
 export class MovieComponent implements OnInit ,OnChanges{
 
   //pageable de peliculas
-  pageableMovie!:PageableMovie
+  pageableMovie:PageableMovie={
+    content:[],
+    pageable:{
+      pageNumber:-1,
+      pageSize:-1,
+      sort:{
+        empty:false,
+        sorted:false,
+        unsorted:false
+      },
+      offset:-1,
+      paged:false,
+      unpaged:false,
+    },
+    last:false,
+    totalPages:-1,
+    totalElements:-1,
+    size:-1,
+    number:-1,
+    sort:{
+      empty:false,
+      sorted:false,
+      unsorted:false
+    },
+    first:false,
+    numberOfElements:-1,
+    empty:false
+  }
   //array para numerar las paginas
   urls:number[] = []
   //campo de ordenacion

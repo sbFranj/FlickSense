@@ -1,0 +1,37 @@
+<div class="container cContainerMovie">
+    <h3>Agregar pelicula</h3>
+    <div class="cFormMovie">
+        <form class="cFormMovieForm" [formGroup]="myForm"> 
+            <input class="form-control cAddInputMovie" 
+                   placeholder="title"
+                   type="text"
+                   formControlName="title"><br>
+            <input class="form-control cAddInputMovie" 
+                   placeholder="year"
+                   type="number"
+                   formControlName="year"><br>
+            <input class="form-control cAddInputMovie" 
+                   placeholder="cover"
+                   type="text"
+                   formControlName="cover"><br>
+            <select class="form-control cAddInputMovie"  
+                    name="idGender"
+                    type="number"
+                    formControlName="idGender">   
+                <option value="">Seleccione un genero</option>
+                @for (gender of genders; track gender.idGender) {
+                    <option value="{{gender.idGender}}">{{gender.name}}</option>
+                }
+            </select><br>
+            <input class="form-control cAddInputMovie" 
+                   placeholder="country"
+                   type="text"
+                   formControlName="country"><br>
+            <h5>
+                <a href="javascript:void(0)" (click)="submit()" class="cAddButtonMovie">Enviar</a>
+            </h5>
+        </form>
+        <br>
+
+    </div>
+</div>
