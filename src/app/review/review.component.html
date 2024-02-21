@@ -26,6 +26,14 @@
                    
                     {{review.review}}
                 </div>
+                @if (name()==review.name) {
+                    
+                    <h5>
+                        <a href="/reviews/edit/{{movieReview.movieDTO.idMovie}}/{{review.idUser}}/{{review.title}}" class="cButtonEdit">Editar</a>
+                        
+                        <a href="javascript:void(0)" (click)="delReview(movieReview.movieDTO.idMovie.toString(), review.idUser.toString(), review.title)"  class="cButtonDell">Borrar</a>
+                    </h5>
+                }
                 
             </div>
         }

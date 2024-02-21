@@ -11,8 +11,10 @@ export class SearchComponent{
 
   busqueda:string = ""
 
+  //usamos el output para comunicar este componente con su padre
   @Output() sendSearch:EventEmitter<string> = new EventEmitter<string>();
 
+  //con el metodo enviamos la busqueda 
   enviarBusqueda(){
     console.log("hijo", this.busqueda)
     this.sendSearch.emit(this.busqueda)

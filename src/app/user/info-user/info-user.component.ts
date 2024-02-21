@@ -24,25 +24,43 @@ export class InfoUserComponent implements OnInit{
     name:"",
     role:"",
   } 
-
+  //usamos esta cadena para presentar una contraseña, pero sin vulnerar informacion
   password:string = "******"
-
 
   @Input() id:string =""
 
   ngOnInit(): void {
+    //cargamos al usuario para editarlo
     this.userService.getUser(this.id)
     .subscribe({
+      //si ha ido bien el usuario que buscamos en lo seteamos
       next:(user=>{
-        console.log(user)
         this.user = user
+      }),
+      //en caso contario se le informa
+      error:(err=>{
+        Swal.fire({
+          title: 'Error!',
+          text: err.error.message,
+          icon: 'error',
+          iconColor:"#fec701",
+          confirmButtonText: 'Volver',
+          confirmButtonColor:"#3C6E99",
+      }).then(resp=>{
+        this.router.navigateByUrl("/users")
+      })
       })
     })
   }
+
+
   edit(){
+    //se recoge la contraseña y se le setea al usuario
     this.user.password = this.password
+    //le pasamos el usuario con los datos
    this.userService.putUser(this.user, this.id)
    .subscribe({
+    //si todo ha ido bien informamos y lo redireccionamos
      next:(resp=>{
        Swal.fire({
          title: 'Editado!',
@@ -54,6 +72,7 @@ export class InfoUserComponent implements OnInit{
          this.router.navigate(["/users"])
        }))
      }),
+     //en caso contario se le informa
      error:(err=>{
        Swal.fire({
          title: 'Error!',

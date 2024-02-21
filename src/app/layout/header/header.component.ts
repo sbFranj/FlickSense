@@ -27,10 +27,11 @@ export class HeaderComponent implements OnInit{
   }
   //funcion destinada a enviar al componente movie una query de busqueda desde el evento del
  enviarBusqueda(event:string){
-     console.log("padre", event)
+     
     this.router.navigateByUrl(`/movies/search/${event}`)
  }
 
+ //funcion destinada a cerrar sesion
  logout(){
   this.userService.logout()
   this.name = signal("")

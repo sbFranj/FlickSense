@@ -149,7 +149,9 @@ export class MovieComponent implements OnInit ,OnChanges{
     this.goTo(this.pageableMovie.pageable.pageNumber+1, sortField)
   }
 
+  //metodo destinado a eliminar una pelicula
   del(idMovie:string){
+    //preguntamos con una alerta para confirmar la eliminacion
     Swal.fire({
       title: "Estas seguro de borrar esta Pelicula?",
       showDenyButton: true,
@@ -158,6 +160,7 @@ export class MovieComponent implements OnInit ,OnChanges{
       confirmButtonColor:"#3C6E99",
       denyButtonColor:"#fec701"
     }).then((result) => {
+      //si confirma eliminamos e informamos
       if (result.isConfirmed) {
         this.movieService.delMovie(idMovie)
           .subscribe({
@@ -185,6 +188,7 @@ export class MovieComponent implements OnInit ,OnChanges{
               })
             })
           })
+          //en caso contario informamos
       } else if (result.isDenied) {
         Swal.fire({
           title: 'Cancelado!',

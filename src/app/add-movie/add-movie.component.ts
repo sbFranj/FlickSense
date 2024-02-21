@@ -33,19 +33,23 @@ export class AddMovieComponent implements OnInit{
     country:["", [Validators.required]]
   })
 
+  //metodo para enseñar mensaje de error en caso de campo no valido
   notValid(field: string): boolean{
     return this.myForm?.controls[field]?.invalid && this.myForm?.controls[field]?.touched
   }
   
   ngOnInit(): void {
-    
+    //cargamos los generos 
     this.movieServie.getGenders()
     .subscribe({
       next:(genders => this.genders = genders)
     })
+    //si hay idMovie da true
     if(this.idMovie){
+      //recuperamos la pelicula por la id
       this.movieServie.getMovie(this.idMovie)
       .subscribe({
+        //si la encuentra lo seteamos en nuestro formulario
         next:(movie=>{
           const {title, year, gender, cover, country} = movie
           const {idGender, name} = gender
@@ -53,8 +57,18 @@ export class AddMovieComponent implements OnInit{
           this.imageUrl = cover
           this.myForm.reset({title, year, idGender, country})
         }),
+        //en caso contrario mandamos mensaje de error
         error:(err=>{
-
+          Swal.fire({
+            title: 'Error!',
+            text: err.error.message,
+            icon: 'error',
+            iconColor:"#fec701",
+            confirmButtonText: 'Intentarlo de nuevo',
+            confirmButtonColor:"#3C6E99",
+        }).then((resp)=>{
+          this.router.navigateByUrl("/movies")
+        })
         })
       })
     }
@@ -78,54 +92,65 @@ export class AddMovieComponent implements OnInit{
   //   }
   // }
 
+    //metodo para editar una pelicula
     edit(){
+      //recogemos la imagen
       let input = document.getElementById("cover") as HTMLInputElement
+      //si hay imagen da true
       if (input.files && input.files[0]) {
+        //creamos un lector de ficheros
         let reader = new FileReader();
+        //leemos el fichero
         reader.onload = (e: any) => {
+          //pasamos a nuestro metodo de subida de archivos el fichero en partfile
           this.movieServie.addCloudinary(e.target.result)
           .subscribe({
               next : (resp=>{
-              console.log(resp.url)
+                //seteamos la url de la respuesta de cloudinary a nuestra imageUrl
               this.imageUrl = resp.url
+              //desestructuramos nuestro formulario
               let {cover, title, year, idGender, country} = this.myForm.value
-      cover = this.imageUrl
-      console.log({cover, title, year, idGender, country})
-      this.movieServie.putMovie(this.idMovie, {cover, title, year, gender:{idGender, name:""}, country})
-      .subscribe({
-        next:(movie =>{
-          console.log(movie)
-          Swal.fire({
-            title: 'Editada!',
-            text: "Pelicula editada correctamente",
-            icon: 'success',
-            iconColor:"#fec701",
-            confirmButtonText: 'Volver',
-            confirmButtonColor:"#3C6E99",
-          }).then((resp)=>{
-              this.router.navigateByUrl("/movies/edit/"+this.idMovie)
-          })
-        }),
-        error:(err=>{
-          Swal.fire({
-            title: 'Error!',
-            text: err.error.message,
-            icon: 'error',
-            iconColor:"#fec701",
-            confirmButtonText: 'Intentarlo de nuevo',
-            confirmButtonColor:"#3C6E99",
-        })
-        })
+              //le seteamos a la variable cover la url
+              cover = this.imageUrl
+              //mandamos a nuestro servicio todos los campos a editar
+              this.movieServie.putMovie(this.idMovie, {cover, title, year, gender:{idGender, name:""}, country})
+              .subscribe({
+                  //en caso de que todo haya ido bien
+                  next:(movie =>{
+                  console.log(movie)
+                  //informamos con un alert
+                  Swal.fire({
+                    title: 'Editada!',
+                    text: "Pelicula editada correctamente",
+                    icon: 'success',
+                    iconColor:"#fec701",
+                    confirmButtonText: 'Volver',
+                    confirmButtonColor:"#3C6E99",
+                  }).then((resp)=>{
+                      this.router.navigateByUrl("/movies/edit/"+this.idMovie)
+                  })
+                  }),
+                  //en caso contrario informamos del error
+                  error:(err=>{
+                    Swal.fire({
+                      title: 'Error!',
+                      text: err.error.message,
+                      icon: 'error',
+                      iconColor:"#fec701",
+                      confirmButtonText: 'Intentarlo de nuevo',
+                      confirmButtonColor:"#3C6E99",
+                  })
+                  })
         
-      })
+              })
             })  
           })
         }
         reader.readAsDataURL(input.files[0]);
+        //si no le pasa imagen hacemos todo igual pero sin usar el metodo de subir a cloudinary
       }else{
         let {cover, title, year, idGender, country} = this.myForm.value
-      cover = this.imageUrl
-      
+        cover = this.imageUrl      
         this.movieServie.putMovie(this.idMovie,{cover, title, year, gender:{idGender, name:""}, country})
       .subscribe({
         next:(movie =>{
@@ -157,7 +182,7 @@ export class AddMovieComponent implements OnInit{
 
     }
 
-
+    //metodo para enviar una pelicula, funciona igual que el de editar, pero usando postMovie en vez de putMovie
     submit(){
       let input = document.getElementById("cover") as HTMLInputElement
       if (input.files && input.files[0]) {
@@ -183,7 +208,7 @@ export class AddMovieComponent implements OnInit{
             confirmButtonText: 'Volver',
             confirmButtonColor:"#3C6E99",
           }).then((resp)=>{
-              this.router.navigateByUrl("/movies/search/"+title)
+              this.router.navigateByUrl("/movies/"+movie.idMovie)
           })
         }),
         error:(err=>{
@@ -218,7 +243,7 @@ export class AddMovieComponent implements OnInit{
             confirmButtonText: 'Volver',
             confirmButtonColor:"#3C6E99",
           }).then((resp)=>{
-              this.router.navigateByUrl("/movies/search/"+title)
+              this.router.navigateByUrl("/movies/"+movie.idMovie)
           })
         }),
         error:(err=>{
