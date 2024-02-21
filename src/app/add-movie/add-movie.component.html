@@ -1,5 +1,10 @@
 <div class="container cContainerMovie">
-    <h3>Agregar pelicula</h3>
+    <h3>{{idMovie? 'Editar pelicula':'Agregar pelicula'}}</h3>
+    @if (idMovie) {
+        <div class="cDivCover">
+            <img class="card-img cCover" src="{{imageUrl}}">
+        </div>
+    }
     <div class="cFormMovie">
         <form class="cFormMovieForm" [formGroup]="myForm">
             Titulo 
@@ -24,11 +29,12 @@
                        El Año no puede ser menor a 1895
                     </span>
                 }<br>
-            Portada
+            {{idMovie? 'Nueva portada':'Portada'}}
             <input class="form-control cAddInputMovie"
                    placeholder=""
                    type="file"
-                   formControlName="cover" (change)="getFile($event)"><br>
+                   id="cover"
+                   formControlName="cover" ><br>
             Genero
             <select class="form-control cAddInputMovie"  
                     name="idGender"
@@ -57,17 +63,24 @@
                     </span>
                 }<br>
             @if (myForm.valid) {
+                @if (!idMovie) {
 
-                <h5>
-                    <a href="javascript:void(0)" (click)="submit()" class="cAddButtonMovie">Enviar</a>
-                </h5>
+                    <h5>
+                        <a href="javascript:void(0)" (click)="submit()" class="cAddButtonMovie">Enviar</a>
+                    </h5>
+                }@else {
+                    <h5>
+                        <a href="javascript:void(0)" (click)="edit()" class="cAddButtonMovie">Enviar</a>
+                    </h5>
+                }
+
             }@else {
                 <h5>
                     <a class="cAddButtonMovie">Enviar</a>
                 </h5>
             }       
         </form>
-        <br>
-
+        
     </div>
+    <br><br><br>
 </div>

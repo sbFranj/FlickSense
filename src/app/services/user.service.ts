@@ -16,11 +16,13 @@ export class UserService {
 
   baseUrl = "http://localhost:9090/users"
 
+  //datos del usuario logeado
   email = signal("")
   role = signal("")
   id = signal("")
   name = signal("")
 
+  //metodo para cargar los datos 
   update(){
     if(typeof localStorage != "undefined"){
 
@@ -43,6 +45,7 @@ export class UserService {
     return this.http.get<UserReview>(`${this.baseUrl}/${id}/review`)
   }
 
+  //metodo para agregar el token al localStorage
   toLocalStorage(resp : any){
     localStorage.setItem("token", resp.token);
   }
@@ -55,6 +58,7 @@ export class UserService {
     return this.http.post("http://localhost:9090/registeruser", user)
   }
 
+  //cuando hacemos login sin error seteamos el token en el localStorage y hacemos un update
   login(emailAndPassword:any):Observable<any>{
      return this.http.post("http://localhost:9090/loginuser",emailAndPassword)
      .pipe(
@@ -69,6 +73,7 @@ export class UserService {
     
   }
 
+  //cuando cerramos sesion removemos el token del localStorage y volvemos los campos a su estado inicial
   logout(){
     localStorage.removeItem("token")
     this.email = signal("")                 

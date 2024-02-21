@@ -5,6 +5,7 @@ import { UserService } from '../../services/user.service';
 import { ValidateEmailService } from '../../validators/validate-email';
 import { User } from '../../interfaces/user';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -76,7 +77,29 @@ export class RegisterComponent {
       .subscribe({
         next:(user=>{
           //cuando haga registro lo enviamos al login
-          this.router.navigateByUrl("/auth/login")
+          Swal.fire({
+            title: 'Registrado!',
+            text: "Cuenta creada correctamente",
+            icon: 'success',
+            iconColor:"#fec701",
+            confirmButtonText: 'Ir al Login',
+            confirmButtonColor:"#3C6E99",
+          }).then(resp=>{
+            this.router.navigateByUrl("/auth/login")
+          })
+          
+        }),
+        error:(err=>{
+          Swal.fire({
+            title: 'Error!',
+            text: err.error.message,
+            icon: 'error',
+            iconColor:"#fec701",
+            confirmButtonText: 'Intentarlo de nuevo',
+            confirmButtonColor:"#3C6E99",
+        }).then((resp)=>{
+          this.router.navigateByUrl("/auth/register")
+        })
         })
       })
     }

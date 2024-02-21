@@ -10,6 +10,7 @@ export const routes: Routes = [
 
     {path: "movies", component: MovieComponent},
     {path:"movies/add", component:AddMovieComponent},
+    {path:"movies/edit/:id", component:AddMovieComponent},
     {path:"movies/search/:q", component:MovieComponent},
     {path: "movies/:id", component: MovieComponent},
     {path:"movies/:idm/review",component : ReviewComponent},

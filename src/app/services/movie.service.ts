@@ -40,6 +40,10 @@ export class MovieService {
     return this.http.delete(`${this.baseUrl}/del/${idMovie}`)
   }
 
+  putMovie(idMovie:string, movie:Omit<Content, "idMovie">):Observable<any>{
+    return this.http.put(`${this.baseUrl}/edit/${idMovie}`, movie)
+  }
+
   addCloudinary(file: File) {
     const url = `https://api.cloudinary.com/v1_1/dgrri2uuj/upload`;
     const unsignedUploadPreset = 'flicksense';

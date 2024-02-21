@@ -49,14 +49,19 @@ export class ReviewComponent implements OnInit {
 
   @Input() idu:string = "";
 
+  role = this.userService.role
+  name = this.userService.name
+
  constructor(private movieService:MovieService,
             private userService:UserService,
             private reviewService:ReviewService,
             private router:Router){}
 
+  //metodo para eliminar una critica, pasandole por parametros las id de la clase
   delReview(idMovie:string, idUser:string, title:string){
+    //si el id del usuario y el id del usuario logeado es el mismo da true
     if(idUser==this.userService.id()){
-
+      //informamos de si esta seguro
       Swal.fire({
         title: "Estas seguro de borrar esta critica?",
         showDenyButton: true,
@@ -65,6 +70,7 @@ export class ReviewComponent implements OnInit {
         confirmButtonColor:"#3C6E99",
         denyButtonColor:"#fec701"
       }).then((result) => {
+        //en caso afirmativo eliminamos e informamos
         if (result.isConfirmed) {
           this.reviewService.delReview(idMovie, idUser, title)
           .subscribe({
@@ -88,6 +94,7 @@ export class ReviewComponent implements OnInit {
               confirmButtonColor:"#3C6E99",
             }))
           })
+          //en caso negativo informamos
         } else if (result.isDenied) {
           Swal.fire({
             title: 'Cancelado!',
@@ -98,6 +105,7 @@ export class ReviewComponent implements OnInit {
           })
         }
       });
+      //si no coinciden los ids se informa de que no puede eliminar
     }else{
       Swal.fire({
         title: 'Error!',
@@ -111,6 +119,7 @@ export class ReviewComponent implements OnInit {
   }
 
  ngOnInit(): void {
+  //si hay idMovie se cargan las criticas de la pelicula
   if(this.idm){
     this.movieService.getMovieReview(this.idm)
     .subscribe({
@@ -119,6 +128,7 @@ export class ReviewComponent implements OnInit {
         
       })
     })
+    //si hay idUser se cargan las criticas del usuario
   }else if(this.idu){
     this.userService.getMovieReview(this.idu)
     .subscribe({
