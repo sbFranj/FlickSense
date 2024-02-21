@@ -4,11 +4,14 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link cLink" href="/movies" >Películas</a>
         </div>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link cLink" href="/users">Usuarios</a>
-          </li>
-        </ul>
+        @if (role()=="admin") {
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link cLink" href="/users">Usuarios</a>
+            </li>
+          </ul>
+        }
       </div>
     </div>
   </nav>

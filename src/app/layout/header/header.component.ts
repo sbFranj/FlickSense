@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit{
   ngOnInit(): void {
     //actualiza del localstorage el nombre de usuario
     this.userService.update()
-    console.log(jwtDecode(localStorage.getItem("token") || "")  )
+    //console.log(jwtDecode(localStorage.getItem("token") || "")  )
 
   }
   //funcion destinada a enviar al componente movie una query de busqueda desde el evento del

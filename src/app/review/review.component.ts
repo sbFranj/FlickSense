@@ -49,6 +49,9 @@ export class ReviewComponent implements OnInit {
 
   @Input() idu:string = "";
 
+  role = this.userService.role
+  name = this.userService.name
+
  constructor(private movieService:MovieService,
             private userService:UserService,
             private reviewService:ReviewService,

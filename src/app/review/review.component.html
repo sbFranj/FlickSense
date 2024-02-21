@@ -4,9 +4,12 @@
 
         
         <h3>Criticicas de la pelicula: {{movieReview.movieDTO.title}}({{movieReview.movieDTO.year}}) </h3>
-        <h5>                    
-            <a href="/addReview/{{movieReview.movieDTO.idMovie}}" class="cButtonAdd">Añadir critica</a>
-        </h5>
+        @if (role()) {
+
+            <h5>                    
+                <a href="/addReview/{{movieReview.movieDTO.idMovie}}" class="cButtonAdd">Añadir critica</a>
+            </h5>
+        }
         @if (!movieReview.reviewsDTO.length) {
             <h1>No existen criticas para esta pelicula todavia</h1>
         }
@@ -48,11 +51,15 @@
                    
                     {{review.review}}
                 </div>
-                <h5>
-                    <a href="/reviews/edit/{{review.idMovie}}/{{userReview.userDTO.idUser}}/{{review.title}}" class="cButtonEdit">Editar</a>
-                    
-                    <a href="javascript:void(0)" (click)="delReview(review.idMovie.toString(), userReview.userDTO.idUser.toString(), review.title)"  class="cButtonDell">Borrar</a>
-                </h5>
+                @if (name()==userReview.userDTO.name) {
+
+                    <h5>
+                        <a href="/reviews/edit/{{review.idMovie}}/{{userReview.userDTO.idUser}}/{{review.title}}" class="cButtonEdit">Editar</a>
+                        
+                        <a href="javascript:void(0)" (click)="delReview(review.idMovie.toString(), userReview.userDTO.idUser.toString(), review.title)"  class="cButtonDell">Borrar</a>
+                    </h5>
+                }
+                
             </div>
         }
         }

@@ -15,9 +15,13 @@
                     <a href="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
                 </h5>
             </div>
+            @if (role()=="admin") {
             <h5>
                 <a (click)="del(movie.idMovie.toString())" href="javascript:void(0)" class="cReviewButtonD">Borrar</a>
             </h5>
+            <h5>
+                <a href="/movies/edit/{{movie.idMovie}}" class="cReviewButtonE">Editar</a>
+            </h5>}
         </div>
         }@else {
             <h3>Pelicula no encontrada</h3>
@@ -45,9 +49,13 @@
                     </h5>
                     
                 </div>
+                @if (role()=="admin") {
                 <h5>
                     <a (click)="del(movie.idMovie.toString())" href="javascript:void(0)" class="cReviewButtonD">Borrar</a>
                 </h5>
+                <h5>
+                    <a href="/movies/edit/{{movie.idMovie}}" class="cReviewButtonE">Editar</a>
+                </h5>}
             </div>
         } 
     }@else {
@@ -55,11 +63,12 @@
         <p>No se encuentra ningun registro</p>
     }
 </div>
-}@else if (pageableMovie.content){
+}@else if (pageableMovie.content.length){
 <div class="container cListMovie" >
+    @if (role()=="admin") {
     <h5>
         <a href="/movies/add" class="cAddMovieButton">Agregar pelicula</a>
-    </h5>
+    </h5>}
         <h3 >Lista de Peliculas</h3>
         <p>ordenar:&nbsp;&nbsp;&nbsp; 
         @if(order && sortField=="year"){
@@ -102,12 +111,15 @@
             </h5>
             
         </div>
-        <h5>
-            <a (click)="del(movie.idMovie.toString())" href="javascript:void(0)" class="cReviewButtonD">Borrar</a>
-        </h5>
-        <h5>
-            <a href="javascript:void(0)" class="cReviewButtonE">Editar</a>
-        </h5>
+        @if (role()=="admin") {
+
+            <h5>
+                <a (click)="del(movie.idMovie.toString())" href="javascript:void(0)" class="cReviewButtonD">Borrar</a>
+            </h5>
+            <h5>
+                <a href="/movies/edit/{{movie.idMovie}}" class="cReviewButtonE">Editar</a>
+            </h5>
+        }
     </div>
         } 
     <div style="text-align: center" >
