@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { User } from '../interfaces/user';
@@ -32,6 +32,20 @@ export class UserService {
       this.name.update(resp => ((jwtDecode(localStorage.getItem("token")||"") as any ).name))
     }
   }
+
+  validateToken(){
+    return this.http.get<string>("http://localhost:9090/validate")
+    .pipe(
+      map(resp=>{
+        this.update()
+        return true
+      }),
+      catchError(err=>{
+        console.log(err.error.message)
+        return of(false)})
+    )
+  }
+
 
   getAll():Observable<User[]>{
     return this.http.get<User[]>(this.baseUrl)

@@ -1,8 +1,23 @@
+.cHome{
+    padding: 2%;
+    height: 43vw;
+}
+.cHome h1{
+    text-align: center;
+    font-size: 6vw;
+}
+.cHome h4{
+    font-weight: normal;
+    font-size: 1.5vw;
+}
+
+
 .cBody{
     background-color:#D9D9D9;
     margin-top: 1%;
     margin-left: 15%;
     margin-right: 15%;
+    box-shadow: -5px 2px 10px rgba(0, 0, 0, 0.5), 10px 15px 20px rgba(0, 0, 0, 0.5);
 }
 .cHead{
     background-color:#447CAD;
@@ -184,15 +199,21 @@ margin-right: 1rem;
     position: absolute;
     bottom: 10px;
     right: 15px;
+    text-decoration: none;
+    color:black
 }
 .cButtonEdit{
     position: absolute;
     bottom: 10px;
-    right: 100px;
+    right: 120px;
+    text-decoration: none;
+    color:black
 }
 
 .cButtonAdd{
     margin-left: 83%;
+    text-decoration: none;
+    color:black
 }
 
 .cLi{

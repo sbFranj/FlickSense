@@ -85,7 +85,20 @@ export class MovieComponent implements OnInit ,OnChanges{
       this.movieService.search(this.q)
       .subscribe({
         //seteamos en el array de peliculas las peliculas que contienen en el titulo la query
-        next:(movies=> this.movies = movies)
+        next:(movies=> this.movies = movies),
+        error:(err=>{
+          Swal.fire({
+            title: 'No encontrada!',
+            text: "no hay coincidencias",
+            icon: 'info',
+            iconColor:"#fec701",
+            confirmButtonText: 'Volver',
+            confirmButtonColor:"#3C6E99",
+          }).then(resp=>{
+            this.router.navigateByUrl("/movies")
+          })
+
+        })
       })
     }
     //si manda una id da true

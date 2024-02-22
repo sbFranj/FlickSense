@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent {
 
-  
+  loading:boolean = false
   constructor(private fb:FormBuilder,
               private validatorEmail: ValidateEmailService,
               private userService:UserService,
@@ -62,6 +62,7 @@ export class RegisterComponent {
     this.myForm.markAsUntouched()
     //si el formulario es valido da true
     if(!this.myForm.invalid){
+      this.loading = true
       //recogemos email, password y name del formulario
       const {email, password, name} = this.myForm.value
       //creamos un usuario de registro con las propiedades que nos hacen falta
@@ -76,6 +77,7 @@ export class RegisterComponent {
       this.userService.register(user)
       .subscribe({
         next:(user=>{
+          this.loading= false;
           //cuando haga registro lo enviamos al login
           Swal.fire({
             title: 'Registrado!',
@@ -90,6 +92,7 @@ export class RegisterComponent {
           
         }),
         error:(err=>{
+          this.loading=false
           Swal.fire({
             title: 'Error!',
             text: err.error.message,
