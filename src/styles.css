@@ -396,10 +396,15 @@ margin-right: 1rem;
     .cButtonAdd{
         margin-left: 70%;
     }
-    
+       
 }
 
 @media(max-width: 990px){
+   .cBody{
+        
+        margin-left: 2%;
+        margin-right: 2%;
+    }
     .cCover{
         width: 6.66rem;
         height: 10rem;
@@ -425,20 +430,20 @@ margin-right: 1rem;
         margin-left: 6rem;
     }
     .cReviewButtonE{
-        margin-right: 20%;
+        margin-right: 25%;
         padding: 10px;
-        font-size: 80%;
+        font-size: 70%;
     }
     .cReviewButtonE svg{
-        width: 1.2rem;
+        width: 1rem;
     }
     .cReviewButtonD{
       margin-right: 1%;
       padding: 10px;
-      font-size: 80%;
+      font-size: 70%;
     }
     .cReviewButtonD svg{
-        width: 1.2rem;
+        width: 1rem;
     }
     .cButtonAdd{
         margin-left: 35%;
