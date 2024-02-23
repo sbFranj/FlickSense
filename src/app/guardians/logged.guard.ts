@@ -9,6 +9,6 @@ export const loggedGuard: CanMatchFn = (route, segments) => {
 
  return userService.validateToken()
  .pipe(
-  tap(valid =>  !valid? router.navigateByUrl('/movies') : false)
+  tap(valid =>  !valid? router.navigate(["/auth/login"]) : false)
  )
 };
