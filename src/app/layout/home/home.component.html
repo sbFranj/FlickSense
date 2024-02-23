@@ -1,20 +1,31 @@
 <div class="cHome">
-   <h1>Bienvenido a FlickSense</h1>
-    <hr><hr>
-    <h4>
-        <p>
-            Somos una plataforma dedicada exclusivamente a películas y críticas. 
-            Nuestro equipo de críticos expertos te ofrece reseñas honestas y 
-            detalladas para ayudarte a tomar decisiones informadas sobre qué 
-            películas ver. Ya sea que busques una comedia ligera o una obra 
-            maestra del cine independiente, en FlickSense encontrarás lo que necesitas.
-        </p>
-        <p>            
-            Si eres un amante del cine en busca de críticas confiables y recomendaciones, 
-            ¡has llegado al lugar adecuado! Estamos emocionados de tenerte aquí y esperamos 
-            que disfrutes de tu experiencia en FlickSense. <a href="/auth/register">¡Bienvenido a bordo!</a>
-        </p>
-        
-        
-    </h4>
+    @if (name()) {
+
+        <h1>Bienvenido {{name()}}</h1>
+        <hr><hr>
+        <h4>
+           
+            
+            
+        </h4>
+    }@else {
+        <h1>Bienvenido a FlickSense</h1>
+        <hr><hr>
+        <h4>
+            <p>
+                Somos una plataforma dedicada exclusivamente a películas y críticas. 
+                Nuestro equipo de críticos expertos te ofrece reseñas honestas y 
+                detalladas para ayudarte a tomar decisiones informadas sobre qué 
+                películas ver. Ya sea que busques una comedia ligera o una obra 
+                maestra del cine independiente, en FlickSense encontrarás lo que necesitas.
+            </p>
+            <p>            
+                Si eres un amante del cine en busca de críticas confiables y recomendaciones, 
+                ¡has llegado al lugar adecuado! Estamos emocionados de tenerte aquí y esperamos 
+                que disfrutes de tu experiencia en FlickSense. <a href="/auth/register">¡Bienvenido a bordo!</a>
+            </p>
+            
+            
+        </h4>
+    }
 </div>

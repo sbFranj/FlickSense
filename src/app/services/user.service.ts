@@ -41,7 +41,7 @@ export class UserService {
         return true
       }),
       catchError(err=>{
-        console.log(err.error.message)
+        this.logout()
         return of(false)})
     )
   }
