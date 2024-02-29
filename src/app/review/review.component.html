@@ -3,7 +3,7 @@
         @if (idm) {
 
         
-        <h3>Criticicas de la pelicula: {{movieReview.movieDTO.title}}({{movieReview.movieDTO.year}}) </h3>
+        <h3>Críticas de la pelicula: {{movieReview.movieDTO.title}}({{movieReview.movieDTO.year}}) </h3>
         @if (role()) {
 
             <h5>                    
@@ -61,7 +61,7 @@
         }@else if(idu){
             
                 
-            <h3>Criticicas del usuario {{userReview.userDTO.name}} </h3>
+            <h3>Críticas del usuario {{userReview.userDTO.name}} </h3>
             
         
         @if (!userReview.reviewsDTO.length) {
