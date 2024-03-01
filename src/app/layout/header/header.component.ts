@@ -1,14 +1,14 @@
 import { Component, OnChanges, OnInit, SimpleChanges, signal } from '@angular/core';
 import { SearchComponent } from '../../search/search.component';
 import { jwtDecode } from "jwt-decode";
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [SearchComponent],
+  imports: [SearchComponent, RouterLink],
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit{
