@@ -10,7 +10,7 @@ import { ReviewFull } from '../interfaces/reviewFull';
 })
 export class ReviewService {
 
-  baseUrl:string = "http://localhost:9090/reviews"
+  baseUrl:string = "https://flicksenseapi.onrender.com/reviews"
   constructor(private http: HttpClient) { }
 
   postReview(review:Review):Observable<any>{
