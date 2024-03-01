@@ -1,6 +1,13 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { finalize } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
+    const loader = inject(NgxUiLoaderService)
+
+    loader.start()
     if(typeof localStorage != "undefined"){
 
         const token = localStorage.getItem('token');
@@ -10,5 +17,5 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
             })
         }
   }
-  return next(req);
+  return next(req).pipe(finalize(()=> loader.stop()));
 };
