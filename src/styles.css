@@ -113,6 +113,7 @@
     margin-right: 1%;
     margin-bottom: 2%;
     border: solid 2px white;
+    object-fit: cover;
 }
 
 .cCardBody{
