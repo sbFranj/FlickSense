@@ -10,7 +10,7 @@ import { MovieDTO, MovieReview } from '../interfaces/moviewReview';
 export class MovieService {
 
   constructor(private http : HttpClient) { }
-  baseUrl:string = "http://localhost:9090/movies"
+  baseUrl:string = "https://flicksenseapi.onrender.com/movies"
 
   getAll(page:string):Observable<PageableMovie>{
     return this.http.get<PageableMovie>(`${this.baseUrl}${page}`)
