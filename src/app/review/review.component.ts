@@ -6,14 +6,14 @@ import { UserReview } from '../interfaces/userReviews';
 import Swal from 'sweetalert2';
 import { ReviewService } from '../services/review.service';
 import { error } from 'console';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-review',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './review.component.html'
 })
 export class ReviewComponent implements OnInit {

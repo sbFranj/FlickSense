@@ -2,14 +2,14 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { PageableMovie , Content} from '../interfaces/pageableMovie';
 import { MovieService } from '../services/movie.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './movie.component.html'
 })
 export class MovieComponent implements OnInit ,OnChanges{
@@ -81,6 +81,9 @@ export class MovieComponent implements OnInit ,OnChanges{
     //si se manda una query da true
     if(this.q){
       console.log("Query:", this.q)
+      if(!this.q){
+        this.q = " "
+      }
       //mandamos al servicio la query 
       this.movieService.search(this.q)
       .subscribe({
