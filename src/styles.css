@@ -364,6 +364,97 @@ margin-right: 1rem;
 .cDivCover{
     margin-left: 44%;
 }
+
+.gradeInMovies{
+    background-color: #447CAD;
+    color: white;
+    display: inline-block;
+    padding: 0.3rem 0.5rem 0rem 0.5rem;
+}
+
+.defaultLink{
+    text-decoration: none;
+    color: #000;
+}
+
+.gradeCover{
+    width: 14rem;
+    height: 21rem;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.gradeContainer{
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+    justify-content: center;
+    
+}
+.grade1{
+    
+    
+}
+
+.grade2{
+    
+}
+
+.grade1 h3{
+    font-weight: normal;
+}
+
+.grade1 span{
+    font-weight: lighter;
+    color: #777777;
+    
+}
+.grade3{
+   margin-left: 1rem;
+   margin-right: 1rem;
+}
+
+.grade3Container{
+    display: flex;
+    gap: 1rem;
+}
+
+.grade3Container #grade{
+    background-color: #447CAD;
+    color: white;
+    font-size: 300%;
+    width: 6rem;
+    display: inline-block;
+    text-align: center;
+}
+
+.grade3Container #totalGrades span{
+    font-size: 150%;
+ }
+.grade3Container #totalGrades{
+    color: #447CAD;
+    border: solid 1px #447CAD;
+    width: 6rem;
+    display: inline-block;
+    text-align: center;
+}
+
+#yourVote{
+    margin-top: 1rem;
+    text-align: center;
+}
+.stars{
+    color: #fec701;
+    border: 1px solid #777777;
+    border-radius: 10% 10% 10% 10% / 50% 50% 50% 50%;
+    font-size: 140%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow:0 1px 1px rgba(0, 0, 0, 0.5);;
+}
+
 @media (max-width: 1200px) {
     .cLog{
         font-size: 90%;

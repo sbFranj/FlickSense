@@ -9,6 +9,8 @@ import { loggedGuard } from './guardians/logged.guard';
 import { adminGuard } from './guardians/admin.guard';
 import { loginGuard } from './guardians/login.guard';
 import { HomeComponent } from './layout/home/home.component';
+import { GetGradeInfoComponent } from './grade/get-grade-info/get-grade-info.component';
+import { AddGradeComponent } from './grade/add-grade/add-grade.component';
 
 export const routes: Routes = [
 
@@ -20,6 +22,7 @@ export const routes: Routes = [
     {path: "movies/:id", component: MovieComponent},
     {path:"movies/:idm/review",component : ReviewComponent},
     {path:"users/:idu/review", component:ReviewComponent},
+    {path:"grade/:idMovie", component:AddGradeComponent,  canMatch:[loggedGuard]},
     {
         path:"users",
         loadChildren:()=> import("./user/routes").then(mod=>mod.routes),

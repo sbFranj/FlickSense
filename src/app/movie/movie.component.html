@@ -7,10 +7,11 @@
             <img class="card-img cCover" src="{{movie.cover}}" alt="Card image cap">
             
             <div class="card cCardBody">
-                <h3 class="card-title">{{movie.title}}</h3>
+                <h3 class="card-title" ><a class="defaultLink" routerLink="/grade/{{movie.idMovie}}">{{movie.title}}</a></h3>
                 <p class="card-text">{{movie.gender.name}}</p>
                 <p class="card-text">{{movie.country}}</p>
-                
+                <!--Componente al que le pasamos del padre al hijo el id de la pelicula para que nos muestre la nota-->
+                <app-get-grade-info idMovie="{{movie.idMovie}}" ></app-get-grade-info>
                 <h5>
                     <a routerLink="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
                 </h5>
@@ -55,10 +56,10 @@
                     <img class="card-img cCover" src="{{movie.cover}}" alt="Card image cap">
                     
                     <div class="card cCardBody">
-                    <h3 class="card-title">{{movie.title}}</h3>
+                    <h3 class="card-title"><a class="defaultLink" routerLink="/grade/{{movie.idMovie}}">{{movie.title}}</a></h3>
                     <p class="card-text">{{movie.gender.name}}</p>
                     <p class="card-text">{{movie.country}}</p>
-                    
+                    <app-get-grade-info idMovie="{{movie.idMovie}}" ></app-get-grade-info>
                     <h5>
                         <a routerLink="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
                     </h5>
@@ -162,10 +163,10 @@
         <img class="card-img cCover" src="{{movie.cover}}" alt="Card image cap">
         
         <div class="card cCardBody">
-            <h3 class="card-title">{{movie.title}}</h3>
+            <h3 class="card-title"><a class="defaultLink" routerLink="/grade/{{movie.idMovie}}">{{movie.title}}</a></h3>
             <p class="card-text">{{movie.gender.name}}</p>
             <p class="card-text">{{movie.country}}</p>
-            
+            <app-get-grade-info idMovie="{{movie.idMovie}}" ></app-get-grade-info>
             <h5>
                 <a routerLink="/movies/{{movie.idMovie}}/review" class="cReviewButton">Criticas</a>
             </h5>

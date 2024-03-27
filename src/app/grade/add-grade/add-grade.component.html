@@ -1,0 +1,41 @@
+<div class=" gradeContainer">
+    <div class="grade2">
+        <img class="card-img gradeCover" src="{{movie.cover}}" alt="Card image cap">
+    </div>
+    <div class="grade1">
+        <h1>{{movie.title}}</h1>
+        <br><br>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp; <span>Año </span> &nbsp;{{movie.year}}</h3>
+        <h3> <span>Genero </span> &nbsp;{{movie.gender.name}}</h3>
+        <h3>&nbsp;&nbsp;&nbsp;&nbsp; <span>País </span> &nbsp;{{movie.country}}</h3>
+    </div>
+    <div class="grade3">
+        <div class="stars">{{getStars(gradeInfo.grade)}}</div>
+        
+        <div class="grade3Container">
+            <div id="grade">{{gradeInfo.grade}}</div>
+            <div id="totalGrades">
+                <div>
+                    <h3>
+                        {{gradeInfo.totalGrades}}
+                    </h3>
+                </div>
+                <div>
+                    <span>{{gradeInfo.totalGrades==1? "voto":"votos"}}</span>
+                </div>
+                
+            </div>
+        </div>
+       
+            <div id="yourVote">
+                Tu voto
+                <select [(ngModel)]="gradeUser.grade" class="form-control" (change)="submit()">
+                    <option value="-1">- No vista</option>
+                    @for (rate of rates; track $index) {
+                        <option value="{{rate}}">{{rate}} {{rateTitles[rate-1]}}</option>
+                    }
+                </select>
+            </div>
+        
+    </div>
+</div>
