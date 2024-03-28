@@ -14,7 +14,7 @@ export class ValidateEmailService implements AsyncValidator{
     const email = control.value;
     console.log(email)
     
-    return this.http.get<any[]>(`http://localhost:9090/users/email?email=${email}`)
+    return this.http.get<any[]>(`https://flicksenseapi.onrender.com/users/email?email=${email}`)
     .pipe(
       map( resp => {
         return (resp.length === 0) ? null : { emailTaken: true}

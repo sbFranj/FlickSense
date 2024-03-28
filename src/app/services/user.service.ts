@@ -14,7 +14,7 @@ export class UserService {
 
   constructor(private http : HttpClient) { }
 
-  baseUrl = "http://localhost:9090/users"
+  baseUrl = "https://flicksenseapi.onrender.com/users"
 
   //datos del usuario logeado
   email = signal("")
@@ -34,7 +34,7 @@ export class UserService {
   }
 
   validateToken(){
-    return this.http.get<string>("http://localhost:9090/validate")
+    return this.http.get<string>("https://flicksenseapi.onrender.com/validate")
     .pipe(
       map(resp=>{
         this.update()
@@ -69,12 +69,12 @@ export class UserService {
   }
 
   register(user:any):Observable<any>{
-    return this.http.post("http://localhost:9090/registeruser", user)
+    return this.http.post("https://flicksenseapi.onrender.com/registeruser", user)
   }
 
   //cuando hacemos login sin error seteamos el token en el localStorage y hacemos un update
   login(emailAndPassword:any):Observable<any>{
-     return this.http.post("http://localhost:9090/loginuser",emailAndPassword)
+     return this.http.post("https://flicksenseapi.onrender.com/loginuser",emailAndPassword)
      .pipe(
        tap(resp=>{
          this.toLocalStorage(resp)

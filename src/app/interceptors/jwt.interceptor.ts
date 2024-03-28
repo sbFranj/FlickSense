@@ -6,10 +6,11 @@ import { finalize } from 'rxjs';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
     const loader = inject(NgxUiLoaderService)
+
     if(!req.url.includes("/users/email?email")){
         loader.start()
     }
-    loader.start()
+
     if(typeof localStorage != "undefined"){
 
         const token = localStorage.getItem('token');
@@ -20,4 +21,6 @@ export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
         }
   }
   return next(req).pipe(finalize(()=> loader.stop()));
+
 };
+
