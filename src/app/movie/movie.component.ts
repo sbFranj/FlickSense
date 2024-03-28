@@ -4,12 +4,13 @@ import { MovieService } from '../services/movie.service';
 import Swal from 'sweetalert2';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { GetGradeInfoComponent } from '../grade/get-grade-info/get-grade-info.component';
 
 
 @Component({
   selector: 'app-movie',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, GetGradeInfoComponent],
   templateUrl: './movie.component.html'
 })
 export class MovieComponent implements OnInit ,OnChanges{
@@ -77,7 +78,6 @@ export class MovieComponent implements OnInit ,OnChanges{
 
   //cuando inicia el componente
   ngOnInit(): void {
-    
     //si se manda una query da true
     if(this.q){
       console.log("Query:", this.q)
