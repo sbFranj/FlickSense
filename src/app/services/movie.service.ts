@@ -53,4 +53,5 @@ export class MovieService {
     
     return this.http.post<any>(url, fd);
     }
+
 }
