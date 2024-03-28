@@ -9,7 +9,7 @@ import { Grade } from '../interfaces/grade';
 })
 export class GradeService {
   constructor(private http : HttpClient) { }
-  baseUrl:string = "http://localhost:9090/grades"
+  baseUrl:string = "https://flicksenseapi.onrender.com/grades"
 
   getGradeInfo(idMovie:string):Observable<GradeInfo>{
     return this.http.get<GradeInfo>(`${this.baseUrl}/${idMovie}`)
